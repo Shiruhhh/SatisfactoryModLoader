@@ -12,7 +12,7 @@ namespace SML {
 		public:
 			void BeginPlay();
 			void EndPlay();
-			void GetHealthComponent(struct FFrame*, void* const);
+			void GetHealthComponent(class FFrame*, void* const);
 			void RagdollCharacter(bool ragdollState);
 		};
 

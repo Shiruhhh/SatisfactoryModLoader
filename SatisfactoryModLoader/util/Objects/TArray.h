@@ -13,9 +13,9 @@ namespace SML {
 		template<class T>
 		struct TArrayIterator {
 			TArray<T>* arr;
-			size_t current;
+			int current;
 
-			inline TArrayIterator(TArray<T>* arr, size_t start = 0) : arr(arr) {
+			inline TArrayIterator(TArray<T>* arr, int start = 0) : arr(arr) {
 				current = start;
 			}
 

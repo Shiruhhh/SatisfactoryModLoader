@@ -21,7 +21,7 @@ namespace SML {
 		};
 
 		FString::FString(const char* message) {
-			max = count = message ? strlen(message) + 1 : 0;
+			max = count = message ? (int)strlen(message) + 1 : 0;
 			if (count) {
 				int16_t *chars = (int16_t*)FMemory::malloc(max * sizeof(int16_t));
 				for (size_t i = 0; i < count; ++i) {

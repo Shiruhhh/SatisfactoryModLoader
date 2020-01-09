@@ -252,7 +252,7 @@ namespace SML {
 			return *this;
 		}
 
-		SML_API PropertyBuilder & PropertyBuilder::boolData(size_t size, ENativeBool native) {
+		SML_API PropertyBuilder & PropertyBuilder::boolData(std::uint32_t size, ENativeBool native) {
 			switch (structType) {
 			case Bool:
 				((FBoolPropertyParams*)params)->size = size;
@@ -308,7 +308,7 @@ namespace SML {
 			return *this;
 		}
 
-		size_t PropertyBuilder::getSize() {
+		std::int32_t PropertyBuilder::getSize() {
 			switch (structType) {
 			case Struct:
 				return ((SDK::UScriptStruct*)((FStructPropertyParams*)params)->scriptStructFunc())->PropertySize;
@@ -316,7 +316,7 @@ namespace SML {
 			return getSize(params->type);
 		}
 
-		size_t PropertyBuilder::getSize(EPropertyClass type) {
+		std::int32_t PropertyBuilder::getSize(EPropertyClass type) {
 			size_t size;
 			switch (type) {
 			case EPropertyClass::Bool:
@@ -400,7 +400,7 @@ namespace SML {
 			default: // missing set
 				throw std::exception("unsupported type");
 			}
-			return size;
+			return (std::int32_t) size;
 		}
 
 		// --- FunctionBuilder --- //
@@ -425,11 +425,11 @@ namespace SML {
 			if (constructed) return constructed;
 
 			FPropertyParamsBase** props = new FPropertyParamsBase*[this->props.size()];
-			int nextOff = 0;
+			std::int32_t nextOff = 0;
 			params.structSize = 0;
-
 			// prop offsets & sizes
-			for (int i = this->props.size() - 1; i >= 0; --i) {
+
+			for (int i = (int)this->props.size() - 1; i >= 0; --i) {
 				auto& p = this->props[i];
 				auto noff = p.getOff();
 				auto nsize = p.getSize();

@@ -732,7 +732,7 @@ namespace SML {
 			*
 			* @author Panakotta00
 			*/
-			SML_API PropertyBuilder& boolData(size_t size = sizeof(bool), ENativeBool native = ENativeBool::Native);
+			SML_API PropertyBuilder& boolData(std::uint32_t size = sizeof(bool), ENativeBool native = ENativeBool::Native);
 
 			/**
 			* Helps to setup bool property
@@ -788,8 +788,8 @@ namespace SML {
 			*
 			* @author Panakotta00
 			*/
-			SML_API size_t getSize();
-			SML_API static size_t getSize(Objects::EPropertyClass type);
+			SML_API std::int32_t getSize();
+			SML_API static std::int32_t getSize(Objects::EPropertyClass type);
 		};
 
 		/**
@@ -1017,7 +1017,7 @@ namespace SML {
 			std::vector<FunctionBuilder> funcs;
 			std::vector<PropertyBuilder> props;
 			std::vector<FImplementedInterfaceParams> interfaces;
-			size_t paramOff = 0;
+			std::int32_t paramOff = 0;
 
 			// helper params
 			Objects::UClass* constructed = nullptr;
@@ -1228,7 +1228,7 @@ namespace SML {
 			*
 			* @author Panakotta00
 			*/
-			inline ClassBuilder& off(size_t off) {
+			inline ClassBuilder& off(std::int32_t off) {
 				paramOff = off;
 				return *this;
 			}
@@ -1421,11 +1421,11 @@ namespace SML {
 					// get props
 					FPropertyParamsBase** props = new FPropertyParamsBase*[active.props.size()];
 					i = 0;
-					size_t size = active.paramOff;
-					int nextOff = active.paramOff;
+					auto size = active.paramOff;
+					auto nextOff = active.paramOff;
 					for (auto& p : active.props) {
 						auto noff = p.getOff();
-						auto nsize = p.getSize();
+						auto nsize = (int) p.getSize();
 						if (noff >= 0) nextOff = noff + nsize;
 						else {
 							if (noff == -1) p.off(nextOff);
@@ -1440,7 +1440,7 @@ namespace SML {
 					active.params.propCount = i;
 
 					active.params.interfaces = active.interfaces.data();
-					active.params.interfaceCount = active.interfaces.size();
+					active.params.interfaceCount = (std::int32_t) active.interfaces.size();
 
 					// set config
 					active.params.config = active.cconfig.c_str();
