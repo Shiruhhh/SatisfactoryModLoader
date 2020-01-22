@@ -818,6 +818,7 @@ namespace SML {
 			std::vector<PropertyBuilder> props;
 			FFunctionParams params;
 			std::string fname;
+			std::int32_t fsize = -1;
 			Objects::UFunction* constructed = nullptr;
 			void* func = nullptr;
 
@@ -947,11 +948,18 @@ namespace SML {
 			SML_API FunctionBuilder& remFuncFlags(Objects::EFunctionFlags flags);
 
 			/**
-			* sets the function namé
+			* sets the function name
 			*
 			* @author Panakotta00
 			*/
 			SML_API FunctionBuilder& name(std::string name);
+
+			/**
+			* overwrites the size of the parameter structur
+			*
+			* @author Panakotta00
+			*/
+			SML_API FunctionBuilder& size(std::int32_t size);
 
 			/**
 			* adds a property to the function (parameter or returnValues)

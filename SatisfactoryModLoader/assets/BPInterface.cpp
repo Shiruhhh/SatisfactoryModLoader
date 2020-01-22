@@ -312,6 +312,8 @@ namespace SML {
 			switch (structType) {
 			case Struct:
 				return ((SDK::UScriptStruct*)((FStructPropertyParams*)params)->scriptStructFunc())->PropertySize;
+			case Bool:
+				return ((FBoolPropertyParams*)params)->size;
 			}
 			return getSize(params->type);
 		}
@@ -428,7 +430,6 @@ namespace SML {
 			std::int32_t nextOff = 0;
 			params.structSize = 0;
 			// prop offsets & sizes
-
 			for (int i = (int)this->props.size() - 1; i >= 0; --i) {
 				auto& p = this->props[i];
 				auto noff = p.getOff();
@@ -442,6 +443,7 @@ namespace SML {
 				auto nstructs = p.getOff() + nsize;
 				if (nstructs > params.structSize) params.structSize = nstructs;
 			}
+			if (fsize >= 0) params.structSize = fsize;
 
 			// prop build
 			auto wasArr = false;
@@ -531,6 +533,11 @@ namespace SML {
 		
 		FunctionBuilder & FunctionBuilder::name(std::string name) {
 			fname = name;
+			return *this;
+		}
+
+		SML_API FunctionBuilder & FunctionBuilder::size(std::int32_t size) {
+			fsize = size;
 			return *this;
 		}
 
