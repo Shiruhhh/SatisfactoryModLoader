@@ -91,7 +91,6 @@ namespace SML {
 			}
 
 			std::string str = message->ToString();
-			Utility::info(str);
 			std::vector<std::string> arguments;
 			std::stringstream ss(str);
 			std::string temp;
@@ -102,10 +101,6 @@ namespace SML {
 				while (getline(ss, temp, ' ')) {
 					arguments.push_back(temp);
 				}
-			}
-
-			for (std::string s : arguments) {
-				Utility::info(s);
 			}
 
 			bool found = false;

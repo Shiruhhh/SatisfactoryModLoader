@@ -92,6 +92,7 @@ namespace SML {
 								}
 								::call<&Objects::UObject::CallFunctionByNameWithArguments>(modActor, L"Init", &output, (SDK::UObject*)NULL, true);
 							} else {
+
 								// Load the blueprint
 								const std::wstring bpPath = L"/Game/FactoryGame/" + modNameW + L"/InitMod.InitMod_C";
 								SDK::UObject* clazz = Functions::loadObjectFromPak(bpPath.c_str());
@@ -157,6 +158,7 @@ namespace SML {
 					::call<&Objects::UObject::CallFunctionByNameWithArguments>(mod, (L"PostInit " + modNames).c_str(), &output, (SDK::UObject*)NULL, true); // Call the event
 					::call<&Objects::AActor::Destroy>((Objects::AActor*)mod, false, true);
 				}
+				mods.clear();
 				Functions::broadcastEvent("afterPakPostInit");
 				Utility::info("Finished initializing paks!");
 			});
