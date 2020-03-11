@@ -34,13 +34,13 @@ void UFGItemDescriptor::PostLoad(){ Super::PostLoad(); }
 EResourceForm UFGItemDescriptor::GetForm(TSubclassOf< UFGItemDescriptor > inClass){ return inClass.GetDefaultObject()->mForm;}
 float UFGItemDescriptor::GetEnergyValue(TSubclassOf< UFGItemDescriptor > inClass){ return inClass.GetDefaultObject()->mEnergyValue; }
 float UFGItemDescriptor::GetRadioactiveDecay(TSubclassOf< UFGItemDescriptor > inClass){ return inClass.GetDefaultObject()->mRadioactiveDecay;}
-FText UFGItemDescriptor::GetItemName(TSubclassOf< UFGItemDescriptor > inClass){ return 
+FText UFGItemDescriptor::GetItemName(TSubclassOf< UFGItemDescriptor > inClass){ 
 if (inClass.GetDefaultObject()->mUseDisplayNameAndDescription == true)
 	return inClass.GetDefaultObject()->mDisplayName;
 else
 	return FText::FromString(inClass->GetName());
 }
-FText UFGItemDescriptor::GetItemDescription(TSubclassOf< UFGItemDescriptor > inClass){ inClass.GetDefaultObject()->mDescription; }
+FText UFGItemDescriptor::GetItemDescription(TSubclassOf< UFGItemDescriptor > inClass){ return inClass.GetDefaultObject()->mDescription; }
 FText UFGItemDescriptor::GetAbbreviatedDisplayName(TSubclassOf< UFGItemDescriptor > inClass){ return FText(); }
 void UFGItemDescriptor::GetPreviewView(TSubclassOf< UFGItemDescriptor > inClass, FItemView& out_previewView){ }
 void UFGItemDescriptor::GetIconView(TSubclassOf< UFGItemDescriptor > inClass, FItemView& out_itemView){ }
