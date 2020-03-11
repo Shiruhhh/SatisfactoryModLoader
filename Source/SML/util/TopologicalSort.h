@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreTypes.h"
+#include <stdexcept>
 
 namespace SML {
 	namespace TopologicalSort {

@@ -61,7 +61,6 @@ void parseConfig(const TSharedRef<FJsonObject>& json, SML::FSMLConfiguration& co
 	config.developmentMode = json->GetBoolField(TEXT("developmentMode"));
 	config.debugLogOutput = json->GetBoolField(TEXT("debug"));
 	config.consoleWindow = json->GetBoolField(TEXT("consoleWindow"));
-	config.fullLog = json->GetBoolField(TEXT("fullLog"));
 }
 
 TSharedRef<FJsonObject> createConfigDefaults() {
@@ -71,7 +70,6 @@ TSharedRef<FJsonObject> createConfigDefaults() {
 	ref->SetBoolField(TEXT("developmentMode"), false);
 	ref->SetBoolField(TEXT("debug"), false);
 	ref->SetBoolField(TEXT("consoleWindow"), false);
-	ref->SetBoolField(TEXT("fullLog"), false);
 	return ref;
 }
 

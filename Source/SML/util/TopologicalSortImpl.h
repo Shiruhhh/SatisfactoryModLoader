@@ -114,10 +114,7 @@ bool SML::TopologicalSort::DirectedGraph<T>::addEdge(const T& src, const T& dest
 
 template<typename T>
 const TSet<T>& SML::TopologicalSort::DirectedGraph<T>::edgesFrom(const T& node) const {
-	if (nodes.Find(node) == nullptr) {
-		//throw std::invalid_argument("src node is not in graph");
-		SML::shutdownEngine(TEXT("src node is not in graph"));
-	}
+	check(nodes.Find(node) != nullptr);
 	return *(*this->nodes.Find(node));
 }
 
